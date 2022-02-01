@@ -1,11 +1,14 @@
 import Head from 'next/head'
-import { useState } from 'react';
-import styled from 'styled-components'
+import styled from 'styled-components';
+// import { useState } from 'react';
+// import styled from 'styled-components';
+import Button from '../components/basecomponents/Button';
+import { theme } from '../styles/theme';
 
 export default function Home() {
-  const Parrafito = styled.p`
-    background: ${props => props.theme.brand.default};
-  `
+  // const Parrafito = styled.p`
+  //   background: ${props => props.theme.brand.default};
+  // `
   return (
     <div >
       <Head>
@@ -15,7 +18,9 @@ export default function Home() {
       </Head>
 
       <main>
-        <Parrafito>CAMBIO DE COLOR</Parrafito>
+        {/* <Parrafito>CAMBIO DE COLOR</Parrafito> */}
+        <Button color={theme.colors.pruebita}>TESTING BUTTON</Button>
+        <Button color={theme.colors.brand.default}>TESTING BUTTON 2</Button>
         <p>HOLIS</p>
       </main>
 
