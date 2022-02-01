@@ -1,32 +1,13 @@
-import React from 'react';
 import styled from 'styled-components';
-import { color, space, fontSize, buttonStyle } from 'styled-system'
+// import { color, space, fontSize, buttonStyle } from 'styled-system'
 
-const BaseButton = styled.button`
-   border: 0;
-   outline: 0;
-   ${color}
-   ${space}
-   ${fontSize}
-   ${buttonStyle}
+const Button = styled.button`
+   border: none;
+   padding: ${props => props.theme.spaces.lg };
+   font-size: ${props => props.theme.fontSizes.sm };
+   font-family: inherit;  
+
  `
-BaseButton.defaultProps = {
-  variant: 'primary',
-  backgroundColor: 'black',
-  size: 'large'
-}
-
-function Button({ className, children, buttonProps }) {
-  return (
-    <BaseButton
-      className={className}
-      {...buttonProps}
-      bg="black"
-    >
-      {children}
-    </BaseButton>
-  )
-}
 
 export default Button;
 

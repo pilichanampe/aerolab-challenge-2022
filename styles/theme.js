@@ -1,6 +1,5 @@
 export const theme = {
   colors: {
-    pruebita: '#000000',
     neutrals: {
       n0: '#FFFFF',   
       n100: '#F5F9FF',   
@@ -25,15 +24,11 @@ export const theme = {
       light: '#FFDFD9',
     },
     specials: {
-      illustrationBG: 'linear-gradient(102.47deg, #7296EB -5.34%, #EAC0E9 106.58%, #EAC0E9 106.58%)',
-      sectionBG: 'linear-gradient(102.47deg, rgba(23, 111, 235, 0.5) -5.34%, rgba(255, 128, 255, 0.5) 106.58%)',
+      illustrationBg: 'linear-gradient(102.47deg, #7296EB -5.34%, #EAC0E9 106.58%, #EAC0E9 106.58%)',
+      sectionBg: 'linear-gradient(102.47deg, rgba(23, 111, 235, 0.5) -5.34%, rgba(255, 128, 255, 0.5) 106.58%)',
       aerolab: 'linear-gradient(180deg, #FF8800 0%, #FF6600 100%)',
     },
   },
-  gradientText: `
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  `,
   buttons: {
     primary: {
       color: 'white',
@@ -57,5 +52,32 @@ export const theme = {
       fontSize: '22px',
       padding: `15px 30px`
     }
+  },
+  fontSizes: {
+    xl1: '200px',
+    xl2: '96px',
+    lg1: '48px',
+    lg2: '32px',
+    md1: '24px',
+    md2: '18px',
+    sm1: '16px',
+    sm2: '14px',
+    xs: '12px',
+  },
+  iconSizes: {
+    sm: '32px',
+    xs: '24px',
+  },
+  breakpoints: {
+    lg: '1920px',
+    md: '1024px',
+    sm: '375px',
+  },
+  spaces: {
+    xl: '4px',
+    lg: '8px',
+    md: '16px',
+    sm: '32px',
+    xs: '48px',
   }
 }; 
