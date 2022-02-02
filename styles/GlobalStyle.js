@@ -9,7 +9,7 @@ export const GlobalStyle = createGlobalStyle`
       Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
     font-weight: 600;
     max-width: 1464px;
-    color: ${props => props.theme.colors.neutrals.n300};
+    color: ${props => props.theme.colors.n300};
     display: flex;
     flex-direction: column;
   }
