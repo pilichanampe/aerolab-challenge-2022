@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
   html,
@@ -9,20 +9,32 @@ export const GlobalStyle = createGlobalStyle`
       Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
     font-weight: 600;
     max-width: 1464px;
-    color: ${props => props.theme.colors.n300};
+    color: ${props => props.theme.colors.n600};
     display: flex;
-    flex-direction: column;
+    flex-direction: column;    
   }
-
+  
   a {
     color: inherit;
     text-decoration: none;
   }
-
+  
   * {
     box-sizing: border-box;
   }
-`;
 
-export const Row = createGlobalStyle`
-`
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (min-width: 375px) {
+    border: 2px solid red;
+  }
+
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (min-width: 1024px) {
+    border: 2px solid green;
+  }
+
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media only screen and (min-width: 1920px) {
+    border: 2px solid purple;
+  }
+`;

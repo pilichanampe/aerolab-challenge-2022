@@ -1,28 +1,12 @@
-import Head from 'next/head'
+import Head from 'next/head';
 import styled from 'styled-components';
-// import { useState } from 'react';
-// import styled from 'styled-components';
-import { Button } from '../components/basecomponents/Button';
-import { theme } from '../styles/theme';
-import { H1, H2, H3, H4 } from '../components/basecomponents/Title';
-import { useState } from 'react';
+import { Box } from '../components/basecomponents/Box';
+import ProductCard from '../components/ProductCard';
+
+const Main = styled(Box)`
+`;
 
 export default function Home() {
-  // const Parrafito = styled.p`
-  //   background: ${props => props.theme.brand.default};
-  // `
-  const [buttonText, setButtonText] = useState('Reedem for 2500');
-  const [disabled, setDisabled] = useState(false);
-  const [processing, setProcessing] = useState(false);
-
-  const handleClick = () => {
-    setDisabled(disabled = !disabled);
-  };
-
-  const handlePayment = () => {
-    setProcessing(processing = !processing);
-    setButtonText('Processing...');
-  };
   return (
     <div >
       <Head>
@@ -31,29 +15,11 @@ export default function Home() {
         <link rel="icon" href="/favicon.svg" />
       </Head>
 
-      <main>
-        {/* <Parrafito>CAMBIO DE COLOR</Parrafito> */}
-        <Button
-          onClick={handleClick}
-          bg={disabled ? 'n300' : ''}
-          color={disabled ? 'n600' : ''}
-        >{buttonText}</Button>
-          {/* Hello World */}
-        <Button bg="n300" color="n600">You need 000</Button>
-        <H1 mb={1} color="brandDefault">
-        </H1>
-        <Button
-          bg={processing ? 'n300' : ''}
-          onClick={handlePayment}
-        >{buttonText}</Button>
-        <H3 mb={1} color="n500">
-          Hello World
-        </H3>
-        <H2 mb={1} color="brandDefault" bg="brandDefault">
-          Hello World
-        </H2>
-        <p>HOLIS</p>
-      </main>
+      <Main
+        as="main"
+      >
+        <ProductCard></ProductCard>
+       </Main>
 
     </div>
   )
