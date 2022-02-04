@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { color, space, fontSize, buttonStyle } from 'styled-system';
+import { color, space, fontSize, buttonStyle, layout, background } from 'styled-system';
 
 export const Button = styled.button`
   background: ${({theme, bg}) => bg ? bg : theme.colors.brandDefault };
@@ -18,6 +18,6 @@ export const Button = styled.button`
   ${space};
   ${fontSize};
   ${buttonStyle};
+  ${layout};
+  ${background};
 `;
-  /* -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent; */

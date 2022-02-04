@@ -29,20 +29,6 @@ export const theme = {
       backgroundColor: 'green'
     }  
   },
-  buttonSizes: {
-    small: {
-      fontSize: '15px',
-      padding: `7px 15px`
-    },
-    medium: {
-      fontSize: '18px',
-      padding: `9px 20px`
-    },
-    large: {
-      fontSize: '22px',
-      padding: `15px 30px`
-    }
-  },
   fontSizes: {
     xl1: '200px',
     xl2: '96px',
@@ -58,16 +44,16 @@ export const theme = {
     sm: '32px',
     xs: '24px',
   },
-  breakpoints: {
-    lg: '1920px',
-    md: '1024px',
-    sm: '375px',
-  },
   spaces: {
     xl: '4px',
     lg: '8px',
     md: '16px',
     sm: '32px',
     xs: '48px',
-  }
+  },
+  breakpoints: {
+    lg: '1920px',
+    md: '1024px',
+    sm: '375px',
+  },
 }; 
