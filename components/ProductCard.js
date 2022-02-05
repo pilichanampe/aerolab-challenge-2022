@@ -5,6 +5,13 @@ import { Text } from '../components/basecomponents/Text';
 import { Button } from '../components/basecomponents/Button';
 import { Box } from '../components/basecomponents/Box';
 import { Image } from '../components/basecomponents/Image';
+import { useState } from "react";
+
+const Container = styled(Box)`
+  @media only screen and (max-width: 1464px) {
+    margin: 20px 8px;
+  }
+`;
 
 const ProductWrapper = styled(Card)`
   width: 348px;
@@ -35,9 +42,14 @@ const ProductDescription = styled(ProductWrapper)`
   padding-right: 24px;
 `;
 
-function ProductCard({ img, name, category }) {
-  return (
-    <Box width={348}>
+function ProductCard({ img, name, category, cost }) {
+  const [canBuy, setCanBuy] = useState(true);
+
+   return (
+    <Container
+      width={348}
+      my={40}
+    >
       <ProductWrapper>
         <ImageWrapper>
           <Image
@@ -62,9 +74,21 @@ function ProductCard({ img, name, category }) {
       <Button
         width="100%"
         mt={16}
-        backgroundImage="aerolab"
-      >Soy el botón</Button>
-    </Box>
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <span>{canBuy ? 'Redeem' : 'You need'}</span>
+        <Image
+          mr={2}
+          ml={2}
+          width={24}
+          height={24}
+          src='./icons/favicon.svg'
+        ></Image>
+        <span>{ cost }</span>    
+      </Button>
+    </Container>
   );
 };
 
