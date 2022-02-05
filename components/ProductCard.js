@@ -8,6 +8,7 @@ import { Image } from '../components/basecomponents/Image';
 import { useState } from "react";
 
 const Container = styled(Box)`
+  border-radius: 16px;
   @media only screen and (max-width: 1464px) {
     margin: 20px 8px;
   }
@@ -17,6 +18,9 @@ const ProductWrapper = styled(Card)`
   width: 348px;
   height: 432.92px; 
   justify-content: end;
+  ${Container}:hover & {
+    box-shadow: -1px 6px 32px 1px ${({ theme }) => theme.colors.n500};
+  }
 `;
 
 const ImageWrapper = styled(Box)`
@@ -27,7 +31,7 @@ const ImageWrapper = styled(Box)`
   width: 100%;
 `;
 
-const ProductDescription = styled(ProductWrapper)`
+const ProductDescription = styled(Card)`
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   border-left: none;
@@ -42,9 +46,14 @@ const ProductDescription = styled(ProductWrapper)`
   padding-right: 24px;
 `;
 
+const RedeemButton = styled(Button)`
+  ${Container}:hover & {
+    box-shadow: -1px 6px 32px 1px ${({ theme }) => theme.colors.n500};
+  }
+`
+
 function ProductCard({ img, name, category, cost }) {
   const [canBuy, setCanBuy] = useState(true);
-
    return (
     <Container
       width={348}
@@ -71,7 +80,8 @@ function ProductCard({ img, name, category, cost }) {
           >{ category }</Text>
         </ProductDescription>
       </ProductWrapper>
-      <Button
+      <RedeemButton
+        className="button"
         width="100%"
         mt={16}
         display="flex"
@@ -87,7 +97,7 @@ function ProductCard({ img, name, category, cost }) {
           src='./icons/favicon.svg'
         ></Image>
         <span>{ cost }</span>    
-      </Button>
+      </RedeemButton>
     </Container>
   );
 };
