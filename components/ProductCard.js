@@ -9,7 +9,7 @@ import { useState } from "react";
 
 const Container = styled(Box)`
   @media only screen and (max-width: 1464px) {
-    margin: 20  px 8px;
+    margin: 20px 8px;
   }
 `;
 
