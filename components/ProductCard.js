@@ -5,6 +5,35 @@ import { Text } from '../components/basecomponents/Text';
 import { Button } from '../components/basecomponents/Button';
 import { Box } from '../components/basecomponents/Box';
 import { Image } from '../components/basecomponents/Image';
+import axios from "axios";
+import { useState } from "react";
+import icon from '../assets/icons/aerolab-logo-1.svg';
+
+export const getStaticProps = async () => {
+  const url = 'https://coding-challenge-api.aerolab.co/products';
+  const options = {
+		headers: {
+			'Content-Type': 'application/json',
+			'Accept': 'application/json',
+			'Authorization': 'Bearer ' + process.env.SECRET_TECHZONE_API_KEY,
+		},   
+  };
+
+  const res = await axios.get(url, options);
+  const data = await res.json();
+
+  return {
+    props: {
+      user: data,
+    },
+  };
+};
+
+const Container = styled(Box)`
+  @media only screen and (max-width: 1464px) {
+    margin: 20  px 8px;
+  }
+`;
 
 const ProductWrapper = styled(Card)`
   width: 348px;
@@ -35,9 +64,14 @@ const ProductDescription = styled(ProductWrapper)`
   padding-right: 24px;
 `;
 
-function ProductCard({ img, name, category }) {
-  return (
-    <Box width={348}>
+function ProductCard({ img, name, category, cost }) {
+  const [canBuy, setCanBuy] = useState(true);
+
+   return (
+    <Container
+      width={348}
+      my={40}
+    >
       <ProductWrapper>
         <ImageWrapper>
           <Image
@@ -62,9 +96,21 @@ function ProductCard({ img, name, category }) {
       <Button
         width="100%"
         mt={16}
-        backgroundImage="aerolab"
-      >Soy el botón</Button>
-    </Box>
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <span>{canBuy ? 'Redeem' : 'You need'}</span>
+        <Image
+          mr={2}
+          ml={2}
+          width={24}
+          height={24}
+          src='./icons/favicon.svg'
+        ></Image>
+        <span>{ cost }</span>    
+      </Button>
+    </Container>
   );
 };
 
