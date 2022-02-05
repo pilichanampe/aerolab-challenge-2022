@@ -1,7 +1,7 @@
 import axios from "axios"
 
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-export default async (req, res) => {
+export default async function handler(req, res) {
   const URL = 'https://coding-challenge-api.aerolab.co/redeem';
   const data = { 
     'productId': '5a0b35c1734d1d08bf7084c3',

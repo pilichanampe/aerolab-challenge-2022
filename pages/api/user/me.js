@@ -3,6 +3,7 @@ import axios from "axios"
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 export default async (req, res) => {
   const URL = 'https://coding-challenge-api.aerolab.co/user/me';
+
   const options = {
     headers: {
       'Content-Type': 'application/json',
