@@ -54,7 +54,8 @@ const RedeemButton = styled(Button)`
 
 function ProductCard({ img, name, category, cost }) {
   const [canBuy, setCanBuy] = useState(true);
-   return (
+
+  return (
     <Container
       width={348}
       my={40}
