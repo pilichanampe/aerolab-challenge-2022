@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import { compose, flex, color, space, layout, background, border, position } from "styled-system";
+import { compose, flexbox, color, space, layout, background, border, position, shadow } from "styled-system";
 
 export const Box = styled('div')(
   compose(
-    flex,
+    flexbox,
     color,
     space,
     layout,
