@@ -5,29 +5,7 @@ import { Text } from '../components/basecomponents/Text';
 import { Button } from '../components/basecomponents/Button';
 import { Box } from '../components/basecomponents/Box';
 import { Image } from '../components/basecomponents/Image';
-import axios from "axios";
 import { useState } from "react";
-import icon from '../assets/icons/aerolab-logo-1.svg';
-
-export const getStaticProps = async () => {
-  const url = 'https://coding-challenge-api.aerolab.co/products';
-  const options = {
-		headers: {
-			'Content-Type': 'application/json',
-			'Accept': 'application/json',
-			'Authorization': 'Bearer ' + process.env.SECRET_TECHZONE_API_KEY,
-		},   
-  };
-
-  const res = await axios.get(url, options);
-  const data = await res.json();
-
-  return {
-    props: {
-      user: data,
-    },
-  };
-};
 
 const Container = styled(Box)`
   @media only screen and (max-width: 1464px) {
