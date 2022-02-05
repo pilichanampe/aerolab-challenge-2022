@@ -1,16 +1,17 @@
 import { GlobalStyle } from '../styles/GlobalStyle';
 import { theme } from '../styles/theme';
 import { ThemeProvider } from "styled-components";
-import { AppWrapper } from '../context/AppContext';
+import { UserProvider } from '../context/UserContext';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <AppWrapper>
+    <UserProvider>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <Component {...pageProps} />
       </ThemeProvider>
-    </AppWrapper>
-  ) 
-}
+    </UserProvider>
+  ); 
+};
+
 export default MyApp;
