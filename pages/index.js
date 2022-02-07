@@ -11,11 +11,15 @@ import { useProductsContext } from '../context/ProductsContext';
 
 export const getStaticProps = async () => {
   const user = await getUser();
-  const productsSSR = await getProducts();
-  
+  const products = await getProducts();
+  const productsSSR = products;
+  const categories = productsSSR.map(product => product.category);
+  const categoriesSSR = [... new Set(categories)];
+ 
   return {
     props: {
       productsSSR,
+      categoriesSSR,
       user,
     }
   }
@@ -24,14 +28,14 @@ export const getStaticProps = async () => {
 const Main = styled(Box)`
   width: 100%;
 `;
-export default function Home({ user, productsSSR }) {
-  const [prueba, setPrueba] = useState(productsSSR);
-  const { points, setPoints, products, setProducts, setName } = useUserContext();
-  
+export default function Home({ user, productsSSR, categoriesSSR }) {
+  const { points, setPoints, setName } = useUserContext();
+  const { categories, setCategories, products, setProducts } = useProductsContext();
   useEffect(() => {
     setPoints(user.points);
+    setProducts(productsSSR);
     setName(user.name);
-    setProducts(prueba);    
+    setCategories(categoriesSSR);  
 
   }, []);
   
@@ -52,13 +56,12 @@ export default function Home({ user, productsSSR }) {
               display="flex"
               justifyContent="end"
             >
-              <AeropayDropdown points={points}></AeropayDropdown>   
+              {user && <AeropayDropdown></AeropayDropdown>}
             </Box>
-            <ProductsList></ProductsList>
+            {products && <ProductsList></ProductsList>}
           </section>
         </Box>
        </Main>
-
     </div>
   )
 }

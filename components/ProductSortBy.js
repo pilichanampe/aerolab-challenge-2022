@@ -23,17 +23,9 @@ const ButtonWrapper = styled(Box)`
 
 function ProductsSortBy() {
   const filters = ['Lowest Price', 'Highest Price']; // Coudn't do Most Recent to work T.T  D:
-  const { filteredProducts, setFilteredProducts } = useProductsContext();
+  const { filteredProducts, setFilteredProducts, products, setProducts } = useProductsContext();
   const [selected, setSelected] = useState();
   const [lastSelected, setLastSelected] = useState();
-  const [productsNoSort, setProductsNoSort] = useState();
-  const { products, setProducts } = useUserContext();
-  
-  useEffect(() => {
-    setProductsNoSort(products.slice());
-  
-  }, []);
-  
 
   const handleSort = (e) => {
     setSelected(e.target.name);
