@@ -10,5 +10,6 @@ export const Box = styled('div')(
     background,
     border,
     position,
+    shadow,
   ),
 );

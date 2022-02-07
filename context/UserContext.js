@@ -1,19 +1,15 @@
 import { createContext, useContext, useState } from 'react';
-import { getUser } from '../components/common/getUser';
 
 const UserContext = createContext();
 
 export function UserProvider({ children }) { 
   const [name, setName] = useState();
   const [points, setPoints] = useState();
-  getUser().then(userData => {
-    setName(userData.name);
-    setPoints(userData.points);
-  });
+  const [loading, setLoading] = useState();
 
   return (
     <UserContext.Provider
-      value={{name, points}}
+      value={{ name, points, setPoints, name, setName, loading, setLoading }}
     >
       {children}
     </UserContext.Provider>

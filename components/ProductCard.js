@@ -6,9 +6,14 @@ import { Button } from '../components/basecomponents/Button';
 import { Box } from '../components/basecomponents/Box';
 import { Image } from '../components/basecomponents/Image';
 import { useState } from "react";
+import { useUserContext } from '../context/UserContext';
+import { postRedeem } from '../components/common/postRedeem';
+import { getUser } from "./common/getUser";
+import { motion } from "framer-motion";
 
 const Container = styled(Box)`
   border-radius: 16px;
+  cursor: ${({ canNotBuy }) => canNotBuy ? 'not-allowed' : 'pointer'};
   @media only screen and (max-width: 1464px) {
     margin: 20px 8px;
   }
@@ -19,7 +24,7 @@ const ProductWrapper = styled(Card)`
   height: 432.92px; 
   justify-content: end;
   ${Container}:hover & {
-    box-shadow: -1px 6px 32px 1px ${({ theme }) => theme.colors.n500};
+    box-shadow: ${({theme, canNotBuy}) => canNotBuy ? 'none' : `-1px 6px 32px 1px ${theme.colors.n500}`};
   }
 `;
 
@@ -47,18 +52,42 @@ const ProductDescription = styled(Card)`
 `;
 
 const RedeemButton = styled(Button)`
+  background: ${({ theme, isLoading, canNotBuy }) => isLoading ? theme.colors.sectionBg : canNotBuy ? theme.colors.n200 : theme.colors.brandDefault};
+  cursor: inherit;
   ${Container}:hover & {
-    box-shadow: -1px 6px 32px 1px ${({ theme }) => theme.colors.n500};
+    box-shadow: -1px 6px 32px 1px ${({ theme }) => theme.colors.n500};    
   }
-`
+`;
 
-function ProductCard({ img, name, category, cost }) {
-  const [canBuy, setCanBuy] = useState(true);
+function ProductCard({ img, name, category, cost, id }) {
+  const [loading, setLoading] = useState();
+  // const [canBuy, setCanBuy] = useState(true);
+  const { points, setPoints, setLoading:setDropdownLoading } = useUserContext();
+  
+  const redeemedProduct = {
+    productId: id,
+  }
+  
+  const handleRedeem = async () => {
+    setLoading(true);
+    setDropdownLoading(true);
+    postRedeem(redeemedProduct)
+    .then(async (response) => {
+      const { points:updatedPosts } = await getUser();
+      setPoints(updatedPosts);
+    }).catch(error => {
+      alert(error.message);
+    }).finally(() => {
+      setLoading(false);
+      setDropdownLoading(false);
+    });
+  }
 
   return (
     <Container
       width={348}
       my={40}
+      canNotBuy={points < cost}
     >
       <ProductWrapper>
         <ImageWrapper>
@@ -82,22 +111,29 @@ function ProductCard({ img, name, category, cost }) {
         </ProductDescription>
       </ProductWrapper>
       <RedeemButton
+        onClick={handleRedeem}
         className="button"
         width="100%"
         mt={16}
         display="flex"
         justifyContent="center"
         alignItems="center"
+        isLoading={loading}
+        canNotBuy={points < cost}
+        disabled={loading || points < cost}
+        color={points < cost ? 'n600' : ''}
       >
-        <span>{canBuy ? 'Redeem' : 'You need'}</span>
-        <Image
-          mr={2}
-          ml={2}
-          width={24}
-          height={24}
-          src='./icons/favicon.svg'
-        ></Image>
-        <span>{ cost }</span>    
+        {loading && <span>Processing...</span>}
+        {!loading &&
+          <>
+           <span>{points > cost ? 'Redeem' : 'You need'}</span>
+            <Image
+              src={points < cost ? './icons/aeropay-4.svg' : './icons/aeropay-3.svg'}
+              px={2}
+            ></Image>
+            <span>{points > cost ? cost : cost - points}</span>
+          </>
+        }
       </RedeemButton>
     </Container>
   );

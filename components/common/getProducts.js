@@ -1,7 +1,8 @@
 import axios from "axios";
 
-export const getProducts = async () => {
+export const getProducts = async () => {  
   const url = 'https://coding-challenge-api.aerolab.co/products';
+  // const url = 'https://private-anon-c8ce5f3261-aerolabchallenge.apiary-mock.com/products';
   const options = {
 		headers: {
 			'Content-Type': 'application/json',

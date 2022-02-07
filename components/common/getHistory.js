@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const getUser = async () => {
+export const getHistory = async () => {
   const url = 'https://coding-challenge-api.aerolab.co/user/history';
   const options = {
 		headers: {
