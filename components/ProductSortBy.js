@@ -63,7 +63,7 @@ function ProductsSortBy() {
       <Text>Sort by:</Text>
       {filters.map(filter => {
         return (
-          <ButtonWrapper>
+          <ButtonWrapper key={filter}>
             <FilterButton
               name={filter}
               onClick={handleSort}

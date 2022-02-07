@@ -173,7 +173,7 @@ function AeropayDropdown() {
                 pointsToAdd.map(selector => {
                   return (
                     <NumberWrapper
-                    key={selector}
+                      key={selector}
                     >
                       <PointsButton
                         isSelected={pointsSelected === selector}
