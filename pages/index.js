@@ -5,14 +5,18 @@ import AeropayDropdown from '../components/AeropayDropdown';
 import { Box } from '../components/basecomponents/Box';
 import { getProducts } from '../components/common/getProducts';
 import ProductsList from '../components/ProductsList';
+import { getUser } from '../components/common/getUser';
 import { useUserContext } from '../context/UserContext';
+import { useProductsContext } from '../context/ProductsContext';
 
 export const getStaticProps = async () => {
-  const products = await getProducts();
+  const user = await getUser();
+  const productsSSR = await getProducts();
   
   return {
     props: {
-      products,
+      productsSSR,
+      user,
     }
   }
 }
@@ -20,7 +24,17 @@ export const getStaticProps = async () => {
 const Main = styled(Box)`
   width: 100%;
 `;
-export default function Home({ products }) {
+export default function Home({ user, productsSSR }) {
+  const [prueba, setPrueba] = useState(productsSSR);
+  const { points, setPoints, products, setProducts, setName } = useUserContext();
+  
+  useEffect(() => {
+    setPoints(user.points);
+    setName(user.name);
+    setProducts(prueba);    
+
+  }, []);
+  
   return (
     <div >
       <Head>
@@ -38,9 +52,9 @@ export default function Home({ products }) {
               display="flex"
               justifyContent="end"
             >
-              <AeropayDropdown></AeropayDropdown>        
+              <AeropayDropdown points={points}></AeropayDropdown>   
             </Box>
-            <ProductsList products={products}></ProductsList>
+            <ProductsList></ProductsList>
           </section>
         </Box>
        </Main>

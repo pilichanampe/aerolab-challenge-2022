@@ -1,9 +1,13 @@
 import axios from "axios";
 
-export const getPoints = async (data) => {
+export const postPoints = async (pointsToAdd) => {
   const url = 'https://coding-challenge-api.aerolab.co/user/points';
+  // const url = 'https://private-anon-c8ce5f3261-aerolabchallenge.apiary-mock.com/user/points';
 
-  const data = {};
+  const pointsData = {
+    amount: pointsToAdd,
+  }
+
   const options = {
 		headers: {
 			'Content-Type': 'application/json',
@@ -12,6 +16,6 @@ export const getPoints = async (data) => {
 		}    
   }
 
-  const { data } = await axios.post(url, data, options);
+  const { data } = await axios.post(url, pointsData, options);
   return data;
 }

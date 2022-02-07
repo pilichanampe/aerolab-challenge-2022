@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { space } from 'styled-system';
+import { space, flexbox, layout, border, shadow } from 'styled-system';
 import { Box } from "../basecomponents/Box";
 
 export const Card = styled(Box)`
@@ -10,4 +10,8 @@ export const Card = styled(Box)`
   justify-content: center;
   align-items: center;
   ${space};
+  ${flexbox};
+  ${layout};
+  ${border};
+  ${shadow};
 `;

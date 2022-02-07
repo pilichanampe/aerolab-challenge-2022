@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import { ProductsProvider, useProductsContext } from '../context/ProductsContext';
+import { useUserContext } from '../context/UserContext';
 import { Box } from './basecomponents/Box';
 import ProductCard from './ProductCard';
-styled
+import ProductsSortBy from './ProductSortBy';
 
 const Wrapper = styled(Box)`
   display: flex;
@@ -17,18 +19,33 @@ const Wrapper = styled(Box)`
   }
 `;
 
-export default function ProductsList({ products }) {
+export default function ProductsList() {
+  // const { filteredProducts, setFilteredProducts } = useProductsContext();
+  const { products } = useUserContext();
+  
+  useEffect(() => {
+    console.log('products en productslist', products);
+  
+  }, []);
+  
+
   return (
-    <Wrapper>
-      {products.map(({ _id, img, name, category, cost }) => (
-        <ProductCard
-          key={_id}
-          img={img.url}
-          name={name}
-          category={category}
-          cost={cost}        
-        ></ProductCard>
-      ))}
-    </Wrapper>
+    <ProductsProvider>
+      <ProductsSortBy products={products}></ProductsSortBy>
+      <Wrapper>
+        {products.map(({ _id, name, cost, category, img}) => {
+          return (
+            <ProductCard
+              key={_id}
+              img={img.url}
+              name={name}
+              id={_id}
+              category={category}
+              cost={cost}
+            ></ProductCard>            
+          )
+        })}
+      </Wrapper>
+    </ProductsProvider>
   );
 };

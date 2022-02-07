@@ -6,14 +6,26 @@ const UserContext = createContext();
 export function UserProvider({ children }) { 
   const [name, setName] = useState();
   const [points, setPoints] = useState();
-  getUser().then(userData => {
-    setName(userData.name);
-    setPoints(userData.points);
-  });
+  const [loading, setLoading] = useState();
+  const [products, setProducts] = useState([]);
+
+  // getUser()
+  // .then(userData => {
+  //   debugger;
+  //   setLoading(true);
+  //   setName(userData.name);
+  //   setPoints(userData.points);
+  // })
+  // .catch(error => {
+  //   console.log(error.message);
+  // })
+  // .finally(() => {
+  //   setLoading(false);
+  // });
 
   return (
     <UserContext.Provider
-      value={{name, points}}
+      value={{ name, points, setPoints, loading, setLoading, name, setName, products, setProducts }}
     >
       {children}
     </UserContext.Provider>
