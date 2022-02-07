@@ -8,6 +8,7 @@ import ProductsList from '../components/ProductsList';
 import { getUser } from '../components/common/getUser';
 import { useUserContext } from '../context/UserContext';
 import { useProductsContext } from '../context/ProductsContext';
+import Footer from '../components/Footer';
 
 export const getStaticProps = async () => {
   const user = await getUser();
@@ -63,6 +64,7 @@ export default function Home({ user, productsSSR, categoriesSSR }) {
         <Grid
           maxWidth="1464px"
         >
+          <header>soy el header</header>
           <section>
             <Box
               as="header"
@@ -73,6 +75,7 @@ export default function Home({ user, productsSSR, categoriesSSR }) {
             </Box>
             {products && <ProductsList></ProductsList>}
           </section>
+          <Footer></Footer>
         </Grid>
        </Main>
     </div>
