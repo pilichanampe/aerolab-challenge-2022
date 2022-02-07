@@ -70,8 +70,7 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-animation-delay: .16s;
     -webkit-animation-iteration-count: infinite;
   }
-
-
+  
   @-webkit-keyframes animateDot {
     20% {
       transform: scale(1)

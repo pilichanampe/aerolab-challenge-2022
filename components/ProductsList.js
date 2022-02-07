@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useProductsContext } from '../context/ProductsContext';
 import { useUserContext } from '../context/UserContext';
 import { Box } from './basecomponents/Box';
+import { Text } from './basecomponents/Text';
 import CategoryDropdown from './CategoryDropdown';
 import ProductCard from './ProductCard';
 import ProductsSortBy from './ProductSortBy';
@@ -23,26 +24,25 @@ const Wrapper = styled(Box)`
 const FiltersHeader = styled(Box)`
   display: flex;
   align-items: center;
-  border: 2px solid red;
+  width: 100%;
+`;
+
+const Divider = styled(Box)`
+  border-left: 2px solid ${({ theme }) => theme.colors.n300};
+  height: 59px;
 `;
 
 export default function ProductsList() {
-  // const { filteredProducts, setFilteredProducts } = useProductsContext();
   const { products } = useProductsContext();
   const { categories } = useProductsContext();
   
-  useEffect(() => {
-    console.log('products en productslist', products);
-    console.log('categories en productslist', categories);
-  
-  }, []);
-  
-
   return (
-    <section>
+    <Wrapper>
       <FiltersHeader>
-        <CategoryDropdown products={products}></CategoryDropdown>
-        <ProductsSortBy products={products}></ProductsSortBy>
+        <Text mr={3}>Filter by:</Text>
+        <CategoryDropdown></CategoryDropdown>
+        <Divider mx="40px" vertical height="100%"></Divider>
+        <ProductsSortBy products={products} border="2px solid blue"></ProductsSortBy>
       </FiltersHeader>
       <Wrapper>
         {products.map(({ _id, name, cost, category, img}) => {
@@ -58,6 +58,6 @@ export default function ProductsList() {
           )
         })}
       </Wrapper>
-    </section>
+    </Wrapper>
   );
 };

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useRef, useState, useEffect } from 'react';
+import styled, { css } from 'styled-components';
 import { useUserContext } from '../context/UserContext';
 import { Box } from './basecomponents/Box';
 import { Card } from './basecomponents/Card';
@@ -44,7 +44,8 @@ const Menu = styled(Card)`
  z-index: 10;
  background-color: ${({ theme }) => theme.colors.n0};
  box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.08);
- position: relative;
+ position: absolute;
+ top: 50px;
  display: ${({ isOpen }) => isOpen ? 'flex' : 'none'};
  flex-direction: column;
 `;
@@ -78,13 +79,17 @@ const Wrapper = styled(Box)`
   display: flex;
   flex-direction: column;
   align-items: end;
-  position: absolute;
+  position: relative;
 `;
 
 const Chevron = styled(Image)`
-  transform: rotate(90deg);
   width: 24px;
   height: 24px;
+  transform: rotate(90deg);
+  transition: transform .2s ease-out;
+  ${({ isActive }) => isActive && css`
+    transform: rotate(-90deg);
+  `};
 `;
 
 const NumberWrapper = styled(Box)`
@@ -99,10 +104,24 @@ const Points = styled.span`
 `;
 
 function AeropayDropdown() {
-  const { name, setName, points, setPoints, loading, setLoading } = useUserContext();
+  const { name, points, setPoints, loading, setLoading } = useUserContext();
   const [chevron, setChevron] = useState('chevron-default.svg');
   const [active, setActive] = useState(false);
   const [pointsSelected, setPointsSelected] = useState(1000);
+  const dropdown = useRef();
+
+  useEffect(() => {
+    const checkIfClickedOutside = e => {
+      if (dropdown.current && !dropdown.current.contains(e.target)) {
+        setActive(false);
+      };
+    }
+    document.addEventListener('click', checkIfClickedOutside);
+    return () => {
+      document.removeEventListener('click', checkIfClickedOutside);
+    }
+
+  }, [active]);
   
   const pointsToAdd = [1000, 5000, 7500];
 
@@ -121,7 +140,8 @@ function AeropayDropdown() {
     setPointsSelected(parseInt(e.target.innerText));
   }
   
-  const handleAddPoints = async () => {
+  const handleAddPoints = async (e) => {
+    e.stopPropagation();
     setLoading(true);
     postPoints(pointsSelected)
     .then(response => {
@@ -134,8 +154,8 @@ function AeropayDropdown() {
   }
 
   return <>
-    <Wrapper>
-      <ADropdown      
+    <Wrapper ref={dropdown}>
+      <ADropdown  
         onClick={activateMenu}
       >
         <Image
@@ -149,6 +169,7 @@ function AeropayDropdown() {
           {!loading && points}
         </Points>
         <Chevron
+          isActive={active}
           ml={2}
           width={32}
           height={32}

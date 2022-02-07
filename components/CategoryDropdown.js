@@ -1,80 +1,57 @@
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import { useUserContext } from '../context/UserContext';
+import React, { useEffect, useState, useRef } from 'react';
+import styled, { css } from 'styled-components';
 import { Box } from './basecomponents/Box';
 import { Card } from './basecomponents/Card';
-import { Button} from './basecomponents/Button';
+import { Text } from './basecomponents/Text';
 import { Image } from './basecomponents/Image';
-import { postPoints } from '../components/common/postPoints';
-import ThreeDotsWave from './ThreeDotsWave';
-import Aerocard from '../components/Aerocard';
+
 import { useProductsContext } from '../context/ProductsContext';
+import { getProducts } from './common/getProducts';
 
 const ADropdown = styled(Card)`
   flex-direction: row;
   justify-content: space-between;
-  min-width: 172px;
+  min-width: 256px;
   height: 48px;
   cursor: pointer;
   background-color: ${({ theme }) => theme.colors.n0};
   padding: 0 16px;
-`;
-
-const LoadingDots = styled(ThreeDotsWave)`
-  width: 100%;
-`;
-
-const AddPointsButton = styled(Button)`
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
-  background: ${({ theme, isLoading }) => isLoading ? theme.colors.sectionBg : theme.colors.brandDefault};
-`;
-
-const PointsButton = styled(Button)`
-  width: 85.33px;
-  height: 35px;
-  border-radius: 12px;
-  background: ${({ isSelected, theme }) => isSelected && theme.colors.brandDefault};
-  -webkit-background-clip: ${({ isSelected }) => !isSelected && 'text'};
-  -webkit-text-fill-color: ${({ isSelected }) => !isSelected && 'transparent'};
+  padding-left: 24px;
+  height: 59px;
 `;
 
 const Menu = styled(Card)`
- width: 312px;
+ width: 256px;
  height: 404px;
- margin-top: 8px;
  z-index: 10;
  background-color: ${({ theme }) => theme.colors.n0};
  box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.08);
- position: relative;
- display: ${({ isOpen }) => isOpen ? 'flex' : 'none'};
+ display: ${({ isOpen }) => isOpen ? 'block' : 'none'};
  flex-direction: column;
-`;
-
-const MenuTitle = styled(Card)`
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-      border-left: none;
-  border-top: none;
-  border-right: none;
-  height: 58px;
-  width: 100%;
-  align-items: start;
-  padding-top: 16px;
-  padding-bottom: 24px;
-  padding-left: 24px;
-  padding-right: 24px;
+ padding: 10px 0px;
+ padding-right: 2px;
+ position: absolute;
+ top: 67px;
 `;
 
 const MenuContent = styled(Box)`
   width: 100%;
   height: 100%;
-  padding: 24px;
+  padding: 2px 0px;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   overflow-y: auto;
   overflow-x: hidden;
+  &::-webkit-scrollbar {
+    height: 15px;
+    width: 6px;
+  };
+  &::-webkit-scrollbar-thumb {
+    background: ${({ theme }) => theme.colors.n300};
+    border-radius: 2px;
+  }
 `;
 
 const Wrapper = styled(Box)`
@@ -82,48 +59,65 @@ const Wrapper = styled(Box)`
   flex-direction: column;
   align-items: start;
   position: relative;
+  padding: 0;
 `;
 
 const Chevron = styled(Image)`
-  transform: rotate(90deg);
   width: 24px;
   height: 24px;
+  transform: rotate(90deg);
+  transition: transform .2s ease-out;
+  ${({ isActive }) => isActive && css`
+    transform: rotate(-90deg);
+  `};
 `;
 
-const NumberWrapper = styled(Box)`
-  background: ${({ theme }) => theme.colors.brandLight};
-  border-radius: 12px;
+const ItemList = styled.li`
+  cursor: pointer;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  padding-left: 24px;
+  height: 51px;
+  color: ${({ theme }) => theme.colors.ng00};
+  font-size: ${({ theme }) => theme.fontSizes.md2};
+  background: ${({ theme, isSelected }) => isSelected ? theme.colors.n200 : ''};
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.n100};
+  }
 `;
 
-const Points = styled.span`
-  background: ${({ theme }) => theme.colors.brandDefault};
-  -webkit-background-clip: ${({ isSelected }) => !isSelected && 'text'};
-  -webkit-text-fill-color: ${({ isSelected }) => !isSelected && 'transparent'};
+const List = styled.ul`
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 `;
 
-function CategoryDropdown({products}) {
-  const { name, setName, points, setPoints, loading, setLoading } = useUserContext();
-  // Can't have the products in useProductsContext updated all the time... Don't know why it behaves like this.
-  // const { products } = useProductsContext;
+function CategoryDropdown() {
   const [chevron, setChevron] = useState('chevron-default.svg');
   const [active, setActive] = useState(false);
-  const [categories, setCategories] = useState();
-  const [category, setCategory] = useState();
+  const { categories }= useProductsContext();
+  const { products, setProducts, allProducts } = useProductsContext()
+  const [selected, setSelected] = useState('All Products');
+  const dropdown = useRef();
 
-  const getCategories = () => {
-    const filters = products.map(product => product.category);
-    setCategories([... new Set(filters)]);
-  }
-  
   useEffect(() => {
-    getCategories();
-    return categories;
-  }, []);
-  
-  console.log(categories);
+    const checkIfClickedOutside = e => {
+      if (dropdown.current && !dropdown.current.contains(e.target)) {
+        setActive(false);
+      };
+    }
+    document.addEventListener('click', checkIfClickedOutside);
+    return () => {
+      document.removeEventListener('click', checkIfClickedOutside);
+    }
+
+  }, [active]);
+
   const activateMenu = (e) => {
-    console.log(categories);
     e.preventDefault();
+    e.stopPropagation();
     setActive(!active);
     if (active) {
       setChevron('chevron-active.svg');
@@ -131,40 +125,29 @@ function CategoryDropdown({products}) {
       setChevron('chevron-default.svg');
     }
   }
-  
-  const handleSelected = (e) => {
+ 
+  const handleFilteredCategory = (e) => {
     e.preventDefault();
-    setPointsSelected(parseInt(e.target.innerText));
-  }
-  
-  const handleAddPoints = async () => {
-    setLoading(true);
-    postPoints(pointsSelected)
-    .then(response => {
-      setPoints(response['New Points']);
-    }).catch(error => {
-      alert(error.message);
-    }).finally(() => {
-      setLoading(false);
-    });
+    e.stopPropagation();
+    setSelected(e.target.id);
+    const selectedTemp = e.target.id;
+    if (selectedTemp === 'All Products') {
+      setProducts(allProducts);
+      return;
+    }
+    setProducts([...allProducts].filter(product => product.category === selectedTemp));
   }
 
   return <>
-    <Wrapper>
-      <ADropdown      
+    <Wrapper ref={dropdown}>
+      <ADropdown
         onClick={activateMenu}
-      >
-        <Image
-          mr={2}
-          width={32}
-          height={32}
-          src='./icons/favicon.svg'
-        ></Image>    
-        <Points>
-          {loading && <LoadingDots></LoadingDots>}
-          {!loading && points}
-        </Points>
+      >   
+        <Text as="span">
+          {selected}
+        </Text>
         <Chevron
+          isActive={active}
           ml={2}
           width={32}
           height={32}
@@ -174,28 +157,37 @@ function CategoryDropdown({products}) {
       <Menu
         isOpen={active}
       >
-        <MenuTitle>{category}</MenuTitle>
         <MenuContent>
           <Box>
-            {categories && 
-              <Box
-                display="flex"
-                width="100%"
-                justifyContent="space-between"
-                flexDirection="column"
-              >
-                {
-                  categories.map(category => {
+            <Box
+              display="flex"
+              width="100%"
+              justifyContent="space-between"
+              flexDirection="column"
+            >
+              <List>
+                <ItemList
+                  isSelected={selected === 'All Products'}
+                  id="All Products"
+                  onClick={handleFilteredCategory}
+                >All Products</ItemList>
+                {!categories && 'categories está vacío'}
+                {products && categories &&
+                  categories.map((category, index) => {
                     return (
-                      <ul>
-                        <li>{category}</li>
-                      </ul>
+                      <ItemList
+                        isSelected={selected === category}
+                        key={`category-${index}`}
+                        id={category}
+                        onClick={handleFilteredCategory}
+                      >
+                        {category}
+                      </ItemList>
                     )
                   })
                 }
-
-              </Box>
-            }
+              </List>
+            </Box>
           </Box>
         </MenuContent>
       </Menu>

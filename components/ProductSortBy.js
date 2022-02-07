@@ -51,11 +51,15 @@ function ProductsSortBy() {
       display="flex"
       width="auto"
       height="100"
+      alignItems="center"
     >
-      <Text>Sort by:</Text>
+      <Text mr={3}>Sort by:</Text>
       {filters.map(filter => {
         return (
-          <ButtonWrapper key={filter}>
+          <ButtonWrapper
+            key={filter}
+            mr={2}
+          >
             <FilterButton
               name={filter}
               onClick={handleSort}
