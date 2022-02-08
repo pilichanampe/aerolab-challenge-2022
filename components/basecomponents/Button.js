@@ -14,6 +14,7 @@ export const Button = styled.button`
   line-height: 150%;
   letter-spacing: 0%;
   font-size: ${props => props.theme.fontSizes.md2};
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
   ${color};
   ${space};
   ${fontSize};
