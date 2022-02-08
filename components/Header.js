@@ -6,19 +6,15 @@ import { Text } from './basecomponents/Text';
 import { Button } from './basecomponents/Button';
 import { Image } from './basecomponents/Image';
 import Link from 'react-scroll/modules/components/Link';
+import { Grid } from './basecomponents/Grid';
 
-const BaseHeader = styled(Box)`
-  width: 100%;
-  display: flex;
-`;
-
-const Container = styled(Box)`
+const Container = styled(Grid)`
   width: 100%;
   height: 780px;
   margin-top: 90px;
   display: flex;
   flex-direction: column;
-  justify-content: end};
+  justify-content: end;
   align-items: start;
 `;
 
@@ -46,9 +42,8 @@ const Span = styled.span`
 const IllustrationWrapper = styled(Box)`
   display: flex;
   justify-content: center;
-  border-radius: 25px;
   align-items: end;
-  height: auto;
+  width: 730px;
 `;
 
 const IllustrationBackground = styled(Box)`
@@ -75,10 +70,13 @@ const PreTitle = styled(Text)`
   font-weight: 600px;
 `;
 
-
 function Header() {
   return (
-    <BaseHeader as="header">
+    <Grid
+      as="header"
+      flexDirection="row"
+      maxWidth="1464px"
+    >
       <Container>
         <Box
           width="577px"
@@ -106,7 +104,7 @@ function Header() {
             </BigButton>
         </Box>
       </Container>
-      <Container start>
+      <Container>
         <IllustrationWrapper>
           <IllustrationBackground></IllustrationBackground>
           <Illustration
@@ -115,7 +113,7 @@ function Header() {
           ></Illustration>
         </IllustrationWrapper>
       </Container>
-    </BaseHeader>
+    </Grid>
   );
 }
 

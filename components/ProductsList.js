@@ -42,7 +42,7 @@ export default function ProductsList() {
         <Text mr={3}>Filter by:</Text>
         <CategoryDropdown></CategoryDropdown>
         <Divider mx="40px" vertical height="100%"></Divider>
-        <ProductsSortBy products={products} border="2px solid blue"></ProductsSortBy>
+        <ProductsSortBy products={products}></ProductsSortBy>
       </FiltersHeader>
       <Wrapper>
         {products.map(({ _id, name, cost, category, img}) => {
