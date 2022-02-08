@@ -1,7 +1,6 @@
 import Head from 'next/head';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import styled from 'styled-components';
-import AeropayDropdown from '../components/AeropayDropdown';
 import { Box } from '../components/basecomponents/Box';
 import { getProducts } from '../components/common/getProducts';
 import ProductsList from '../components/ProductsList';
@@ -9,6 +8,8 @@ import { getUser } from '../components/common/getUser';
 import { useUserContext } from '../context/UserContext';
 import { useProductsContext } from '../context/ProductsContext';
 import Footer from '../components/Footer';
+import Navbar from '../components/Navbar';
+import Header from '../components/Header';
 
 export const getStaticProps = async () => {
   const user = await getUser();
@@ -38,10 +39,24 @@ const Grid = styled(Box)`
 
 const Main = styled(Box)`
   width: 100%;
+  position: relative;
 `;
+
+const WavesPattern = styled(Box)`
+  display: flex;
+  background-image: url('./illustrations/figma-pattern.svg');
+  position: absolute;
+  height: 900px;
+  width: 100%;
+  z-index: -1;
+  display: flex;
+  top: 230px;
+  justify-content: center;
+`;
+
 export default function Home({ user, productsSSR, categoriesSSR }) {
-  const { points, setPoints, setName } = useUserContext();
-  const { categories, setCategories, products, setProducts, setAllProducts } = useProductsContext();
+  const { setPoints, setName } = useUserContext();
+  const { setCategories, products, setProducts, setAllProducts } = useProductsContext();
   useEffect(() => {
     setPoints(user.points);
     setProducts(productsSSR);
@@ -59,22 +74,28 @@ export default function Home({ user, productsSSR, categoriesSSR }) {
         <link rel="icon" href="/favicon.svg" />
       </Head>
       <Main
-        as="main"        
+        as="main"
       >
+        <WavesPattern>
+        </WavesPattern>
+        <Navbar>
+        </Navbar>
         <Grid
           maxWidth="1464px"
         >
-          <header>soy el header</header>
-          <section>
+          <Header></Header>
+          <Box
+            as="section"
+            mt="128px"
+          >
             <Box
               as="header"
               display="flex"
               justifyContent="end"
             >
-              {user && <AeropayDropdown></AeropayDropdown>}
             </Box>
             {products && <ProductsList></ProductsList>}
-          </section>
+          </Box>
           <Footer></Footer>
         </Grid>
        </Main>
