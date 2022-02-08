@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { color, space, fontSize, buttonStyle, layout, background, flexbox } from 'styled-system';
+import { color, space, fontSize, buttonStyle, layout, background, flexbox, typography } from 'styled-system';
 
 export const Button = styled.button`
   background: ${({theme, bg}) => bg ? bg : theme.colors.brandDefault };
@@ -21,4 +21,5 @@ export const Button = styled.button`
   ${layout};
   ${background};
   ${flexbox};
+  ${typography};
 `;

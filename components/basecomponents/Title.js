@@ -1,34 +1,27 @@
-
 import styled from "styled-components";
-import { color, space } from "styled-system";
+import { typography, color, space, flexbox, border } from "styled-system";
 
-export const H1 = styled.h1`
-  font-size: ${(props) => props.theme.fontSizes.xl};
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  ${color};
-  ${space};
+export const Title1 = styled.h1`
+  font-family: inherit;
+  margin: 0;
+  padding: 0;
+  font-size: ${({ theme }) => theme.fontSizes.xl1 };
+  line-height: 80%;
+  letter-spacing: 0%;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.colors.n900 };
+  ${ typography };
+  ${ color };
+  ${ space };
+  ${ flexbox };
+  ${ border };
 `;
 
-export const H2 = styled.h2`
-  font-size: ${(props) => props.theme.fontSizes.lg};
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  ${color};
-  ${space};
+export const Title2 = styled(Title1)`
+  font-size: ${({ theme }) => theme.fontSizes.lg1 };
 `;
 
-export const H3 = styled.h3`
-  font-size: ${(props) => props.theme.fontSizes.lg};
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  ${color};
-  ${space};
-`;
-
-export const Subtitle = styled.h4`
-  font-size: ${(props) => props.theme.fontSizes.lg};
-  font-weight: 500;
-  ${color};
-  ${space};
+export const Title3 = styled(Title1)`
+  font-size: ${({ theme }) => theme.fontSizes.lg2 };
+  line-height: 100%;
 `;

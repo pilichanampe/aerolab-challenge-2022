@@ -37,7 +37,7 @@ export default function ProductsList() {
   const { categories } = useProductsContext();
   
   return (
-    <Wrapper>
+    <Wrapper id="productsSection" pt="100px">
       <FiltersHeader>
         <Text mr={3}>Filter by:</Text>
         <CategoryDropdown></CategoryDropdown>

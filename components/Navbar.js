@@ -16,6 +16,10 @@ const Nav = styled(Box)`
   max-width: 1464px;
   top: 0;
   border-bottom: 2px solid ${({ theme }) => theme.colors.n200};
+  left: 0; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto;
 `;
 
 function Navbar() {
