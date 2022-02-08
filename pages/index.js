@@ -40,7 +40,6 @@ const Grid = styled(Box)`
 const Main = styled(Box)`
   width: 100%;
   position: relative;
-  /* border: 10px solid purple; */
 `;
 
 const WavesPattern = styled(Box)`
@@ -49,10 +48,9 @@ const WavesPattern = styled(Box)`
   position: absolute;
   height: 900px;
   width: 100%;
-  /* max-width: 1464px; */
   z-index: -1;
   display: flex;
-  top: 138px;
+  top: 230px;
   justify-content: center;
 `;
 

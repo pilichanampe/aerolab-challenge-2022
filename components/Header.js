@@ -14,11 +14,11 @@ const BaseHeader = styled(Box)`
 
 const Container = styled(Box)`
   width: 100%;
-  height: 800px;
+  height: 780px;
   margin-top: 90px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: end};
   align-items: start;
 `;
 
@@ -33,6 +33,7 @@ const BigButton = styled(Button)`
   justify-content: center;
   text-transform: uppercase;
   margin-top: 64px;
+  border-radius: 24px;
 `;
 
 const Span = styled.span`
@@ -46,13 +47,14 @@ const IllustrationWrapper = styled(Box)`
   display: flex;
   justify-content: center;
   border-radius: 25px;
-  align-items: center;
+  align-items: end;
+  height: auto;
 `;
 
 const IllustrationBackground = styled(Box)`
   background: ${({ theme }) => theme.colors.sectionBg};
-  height: 510px;
-  width: 600px;
+  height: 650px;
+  width: 730px;
   position: absolute;
   display: flex;
   align-self: end;
@@ -61,6 +63,7 @@ const IllustrationBackground = styled(Box)`
 
 const Illustration = styled(Image)`
   position: relative;
+  object-fit: cover;
 `;
 
 const PreTitle = styled(Text)`
@@ -79,6 +82,7 @@ function Header() {
       <Container>
         <Box
           width="577px"
+          mb="14px"
         >
           <Title>
             <PreTitle as="h3">EXPLORE THE</PreTitle>
@@ -102,12 +106,12 @@ function Header() {
             </BigButton>
         </Box>
       </Container>
-      <Container>
+      <Container start>
         <IllustrationWrapper>
           <IllustrationBackground></IllustrationBackground>
           <Illustration
             src="./illustrations/hero-desktop.png"
-            width="700px"
+            width="897px"
           ></Illustration>
         </IllustrationWrapper>
       </Container>
