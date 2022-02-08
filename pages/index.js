@@ -9,6 +9,7 @@ import { getUser } from '../components/common/getUser';
 import { useUserContext } from '../context/UserContext';
 import { useProductsContext } from '../context/ProductsContext';
 import Footer from '../components/Footer';
+import Navbar from '../components/Navbar';
 
 export const getStaticProps = async () => {
   const user = await getUser();
@@ -39,6 +40,7 @@ const Grid = styled(Box)`
 const Main = styled(Box)`
   width: 100%;
 `;
+
 export default function Home({ user, productsSSR, categoriesSSR }) {
   const { points, setPoints, setName } = useUserContext();
   const { categories, setCategories, products, setProducts, setAllProducts } = useProductsContext();
@@ -64,17 +66,20 @@ export default function Home({ user, productsSSR, categoriesSSR }) {
         <Grid
           maxWidth="1464px"
         >
-          <header>soy el header</header>
-          <section>
+          <Navbar>
+          </Navbar>
+          <Box
+            as="section"
+            mt="128px"
+          >
             <Box
               as="header"
               display="flex"
               justifyContent="end"
             >
-              {user && <AeropayDropdown></AeropayDropdown>}
             </Box>
             {products && <ProductsList></ProductsList>}
-          </section>
+          </Box>
           <Footer></Footer>
         </Grid>
        </Main>

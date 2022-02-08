@@ -154,8 +154,11 @@ function AeropayDropdown() {
   }
 
   return <>
-    <Wrapper ref={dropdown}>
-      <ADropdown  
+    <Wrapper
+      ref={dropdown}
+      title="Buy more points"
+    >
+      <ADropdown
         onClick={activateMenu}
       >
         <Image
