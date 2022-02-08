@@ -16,9 +16,80 @@ const Container = styled(Grid)`
   flex-direction: column;
   justify-content: end;
   align-items: start;
+
+  @media only screen and (max-width: 1024px) {
+    height: 600px;
+  }
 `;
 
+const HeaderWrapper = styled(Grid)`
+  max-width: 1464px;
+  display: flex;
+  flex-direction: row;
+
+  @media only screen and (max-width: 1024px) {
+    align-items: start;
+  }
+`;
+
+const PresentationWrapper = styled(Container)`
+  width: 100%;   
+  
+  @media only screen and (max-width: 1464px) {
+    text-align: center;
+    margin-top: 0;
+    height: 760px;
+  }
+
+  @media only screen and (max-width: 1024px) {
+    justify-content: space-around;
+    margin-top: 0;
+  }
+`;
+
+const IllustrationContainer = styled(Container)`
+  width: auto;
+  
+  @media only screen and (max-width: 1464px) {
+    display: none;
+  }
+
+  /* display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: end; */
+`;
+
+const TextWrapper = styled(Container)`
+  max-width: 600px;
+  
+  @media only screen and (max-width: 1464px) {
+    align-items: center;
+    text-align: center;
+  }
+
+  @media only screen and (max-width: 1024px) {
+    align-items: center;
+    justify-content: start;
+    text-align: center;
+    max-width: 350px;
+    height: auto;
+    margin-top: 0px;
+  }
+`;
+
+
 const Title = styled(Title1)`
+  /* @media only screen and (max-width: 1464px, min-width: 1024px) { */
+    /* font-size: ${({ theme }) => theme.fontSizes.xl2} */
+  /* } */
+  
+  @media (max-width: 1024px) {
+    font-size: ${({ theme }) => theme.fontSizes.xl2};
+    align-items: center;
+    text-align: center;
+  }
+
 `;
 
 const BigButton = styled(Button)`
@@ -30,6 +101,13 @@ const BigButton = styled(Button)`
   text-transform: uppercase;
   margin-top: 64px;
   border-radius: 24px;
+
+  @media only screen and (max-width: 1024px) {
+    height: 64px;
+    width: 303px;
+    font-size: ${({ theme }) => theme.fontSizes.sm1};
+    margin-top: 40px;
+  }
 `;
 
 const Span = styled.span`
@@ -37,6 +115,7 @@ const Span = styled.span`
   -webkit-background-clip: ${({ primary }) => primary && 'text'};
   -webkit-text-fill-color: ${({ primary }) => primary && 'transparent'};
   display: block;
+  text-align: start;
 `;
 
 const IllustrationWrapper = styled(Box)`
@@ -44,41 +123,48 @@ const IllustrationWrapper = styled(Box)`
   justify-content: center;
   align-items: end;
   width: 730px;
+  height: 660px;
+  background: ${({ theme }) => theme.colors.sectionBg};
+  border-radius: 100px;
 `;
 
-const IllustrationBackground = styled(Box)`
-  background: ${({ theme }) => theme.colors.sectionBg};
-  height: 650px;
-  width: 730px;
-  position: absolute;
-  display: flex;
-  align-self: end;
-  border-radius: 100px;
-`
-
 const Illustration = styled(Image)`
-  position: relative;
+  position: absolute;
   object-fit: cover;
+  max-width: 897px;
 `;
 
 const PreTitle = styled(Text)`
   line-height: 150%;
   font-style: normal;
+  font-weight: 300;
   letter-spacing: 0.24em;
   text-transform: uppercase;
   color: ${({ theme }) => theme.colors.n600};
   font-weight: 600px;
+  width: auto;
+  text-align: start;
+  letter-spacing: 0.24em;
+  margin-bottom: 8px;
+
+  @media only screen and (max-width: 1464px) {
+    text-align: center;
+    font-size: ${({ theme }) => { theme.fontSizes.sm2}}
+  }
+
+  @media only screen and (max-width: 1024px) {
+    font-size: ${({ theme }) => { theme.fontSizes.lg2}} !important;
+  }
+
+
 `;
 
 function Header() {
   return (
-    <Grid
-      as="header"
-      flexDirection="row"
-      maxWidth="1464px"
-    >
-      <Container>
-        <Box
+    <HeaderWrapper as="header">
+      <PresentationWrapper>
+        <TextWrapper
+          // display="flex"
           width="577px"
           mb="14px"
         >
@@ -102,18 +188,16 @@ function Header() {
                 ml="11px"
               ></Image>
             </BigButton>
-        </Box>
-      </Container>
-      <Container>
+        </TextWrapper>
+      </PresentationWrapper>
+      <IllustrationContainer>
         <IllustrationWrapper>
-          <IllustrationBackground></IllustrationBackground>
           <Illustration
             src="./illustrations/hero-desktop.png"
-            width="897px"
-          ></Illustration>
+            ></Illustration>
         </IllustrationWrapper>
-      </Container>
-    </Grid>
+      </IllustrationContainer>
+    </HeaderWrapper>
   );
 }
 

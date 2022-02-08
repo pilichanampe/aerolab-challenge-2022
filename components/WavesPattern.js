@@ -11,6 +11,14 @@ const Waves = styled(Box)`
   display: flex;
   top: 230px;
   justify-content: center;
+
+  @media only screen and (max-width: 1024px) {
+    top: 150px;
+  }
+
+  @media only screen and (max-width: 1464px) {
+    top: 150px;
+  }
 `;
 
 import React from 'react';
