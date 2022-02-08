@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { typography, color, space, flexbox, border } from "styled-system";
+import { typography, color, space, flexbox, border, layout } from "styled-system";
 
 export const Text = styled.p`
   font-family: inherit;
@@ -14,4 +14,5 @@ export const Text = styled.p`
   ${ space };
   ${ flexbox };
   ${ border };
+  ${ layout };
 `;

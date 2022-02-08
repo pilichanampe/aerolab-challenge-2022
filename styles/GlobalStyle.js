@@ -18,8 +18,20 @@ export const GlobalStyle = createGlobalStyle`
     align-items: center;
     justify-content: center;
     width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  #__next {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
+  nav, #__next {
+    max-width: 3000px;
+  }
   a {
     color: inherit;
     text-decoration: none;

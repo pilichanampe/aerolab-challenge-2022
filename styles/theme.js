@@ -19,16 +19,6 @@ export const theme = {
     sectionBg: 'linear-gradient(102.47deg, rgba(23, 111, 235, 0.5) -5.34%, rgba(255, 128, 255, 0.5) 106.58%)',
     aerolab: 'linear-gradient(180deg, #FF8800 0%, #FF6600 100%)',
   },
-  buttons: {
-    primary: {
-      color: 'white',
-      backgroundColor: 'blue'
-    },
-    secondary: {
-      color: 'white',
-      backgroundColor: 'green'
-    }  
-  },
   fontSizes: {
     xl1: '200px',
     xl2: '96px',

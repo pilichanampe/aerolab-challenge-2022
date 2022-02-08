@@ -13,7 +13,7 @@ const Nav = styled(Box)`
   background: ${({ theme }) => theme.colors.n0};
   position: fixed;
   z-index: 2;
-  max-width: 1464px;
+  padding: 24px;
   top: 0;
   border-bottom: 2px solid ${({ theme }) => theme.colors.n200};
   left: 0; 
