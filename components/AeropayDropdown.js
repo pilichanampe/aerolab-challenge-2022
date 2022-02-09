@@ -3,11 +3,13 @@ import styled, { css } from 'styled-components';
 import { useUserContext } from '../context/UserContext';
 import { Box } from './basecomponents/Box';
 import { Card } from './basecomponents/Card';
-import { Button} from './basecomponents/Button';
+import { Button } from './basecomponents/Button';
+import { Text } from './basecomponents/Text';
 import { Image } from './basecomponents/Image';
 import { postPoints } from '../components/common/postPoints';
 import ThreeDotsWave from './ThreeDotsWave';
 import Aerocard from '../components/Aerocard';
+import { useToastContext } from '../context/ToastContext';
 
 const ADropdown = styled(Card)`
   flex-direction: row;
@@ -109,6 +111,7 @@ function AeropayDropdown() {
   const { name, points, setPoints, loading, setLoading } = useUserContext();
   const [chevron, setChevron] = useState('chevron-default.svg');
   const [active, setActive] = useState(false);
+  const { notifications, setNotifications } = useToastContext();
   const [pointsSelected, setPointsSelected] = useState(1000);
   const dropdown = useRef();
 
@@ -148,6 +151,14 @@ function AeropayDropdown() {
     postPoints(pointsSelected)
     .then(response => {
       setPoints(response['New Points']);
+      setNotifications(
+        [
+          ...notifications,
+          <Text>
+            {response.message}
+          </Text>
+        ]
+      );
     }).catch(error => {
       alert(error.message);
     }).finally(() => {
