@@ -12,7 +12,7 @@ import ProductsSortBy from './ProductSortBy';
 
 const Wrapper = styled(Grid)`
   margin-top: 200px;
-  padding-top: 200px;
+  padding-top: 100px;
   max-width: 1494px;
   display: flex;
   flex-direction: column;
