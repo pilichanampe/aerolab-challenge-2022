@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import { useEffect } from 'react';
 import styled from 'styled-components';
-import { Box } from '../components/basecomponents/Box';
 import { getProducts } from '../components/common/getProducts';
 import ProductsList from '../components/ProductsList';
 import { getUser } from '../components/common/getUser';
@@ -13,6 +12,7 @@ import { Grid } from '../components/basecomponents/Grid';
 import Header from '../components/Header';
 import WavesPattern from '../components/WavesPattern';
 import WalkThrough from '../components/WalkThrough';
+import { Toast } from '../components/Toast';
 
 export const getStaticProps = async () => {
   const user = await getUser();
@@ -59,6 +59,7 @@ export default function Home({ user, productsSSR, categoriesSSR }) {
       <Main
         as="main"
       >
+        <Toast></Toast>
         <WavesPattern>
         </WavesPattern>
         <Navbar>

@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useProductsContext } from '../context/ProductsContext';
-import { useUserContext } from '../context/UserContext';
 import { Box } from './basecomponents/Box';
 import { Text } from './basecomponents/Text';
 import { Title2 } from './basecomponents/Title';
@@ -92,7 +91,7 @@ const FilterText = styled(Text)`
 
 export default function ProductsList() {
   const { products } = useProductsContext();
-  const { categories } = useProductsContext();
+  const { categories } = useProductsContext();  
   
   return (
     <Wrapper id="productsSection">

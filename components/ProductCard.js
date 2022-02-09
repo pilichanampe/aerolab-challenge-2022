@@ -10,6 +10,7 @@ import { useUserContext } from '../context/UserContext';
 import { postRedeem } from '../components/common/postRedeem';
 import { getUser } from "./common/getUser";
 import { motion } from "framer-motion";
+import { useToastContext } from '../context/ToastContext';
 
 const Container = styled(motion.div)`
   border-radius: 16px;
@@ -17,7 +18,7 @@ const Container = styled(motion.div)`
   margin-top: 40px;
   margin-bottom: 40px;
   margin: 10px;
-  cursor: ${({ canNotBuy }) => canNotBuy ? 'not-allowed' : 'pointer'};
+  cursor: ${({ canNotBuy }) => canNotBuy ? 'arrow' : 'pointer'};
   @media only screen and (max-width: 1464px) {
     margin: 20px 8px;
   }
@@ -70,30 +71,44 @@ const spring = {
   stiffness: 120
 };
 
-const transition = {
-  type: "spring",
-  damping: 25,
-  stiffness: 120
-};
-
 function ProductCard({ img, name, category, cost, id }) {
   const [loading, setLoading] = useState();
-  // const [canBuy, setCanBuy] = useState(true);
   const { points, setPoints, setLoading:setDropdownLoading } = useUserContext();
+  const { notifications, setNotifications, addNotification, removeNotification } = useToastContext();
   
   const redeemedProduct = {
     productId: id,
   }
   
-  const handleRedeem = async () => {
+  const handleRedeem = async (e) => {
+    e.stopPropagation();
+    e.preventDefault();
     setLoading(true);
     setDropdownLoading(true);
     postRedeem(redeemedProduct)
     .then(async (response) => {
-      const { points:updatedPosts } = await getUser();
-      setPoints(updatedPosts);
+      const { message } = response;
+      const { points:updatedPoints } = await getUser();
+      setPoints(updatedPoints);
+      setNotifications(
+        [
+          ...notifications,
+          <Text>
+            <Text
+              as="strong"
+              color="n900"
+              
+            >
+              { name }
+            </Text>
+            {` redeemed successfully`}
+          </Text>
+        ]
+      );
+      console.log(notifications);
     }).catch(error => {
-      alert(error.message);
+      setNotifications([...notifications, `${error.message}`]);
+      // alert(error.message);
     }).finally(() => {
       setLoading(false);
       setDropdownLoading(false);
