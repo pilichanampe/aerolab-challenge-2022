@@ -29,6 +29,7 @@ const HeaderWrapper = styled(Grid)`
 
   @media only screen and (max-width: 1024px) {
     align-items: start;
+    height: 540px;
   }
 `;
 
@@ -101,6 +102,7 @@ const BigButton = styled(Button)`
   text-transform: uppercase;
   margin-top: 64px;
   border-radius: 24px;
+  z-index: 1;
 
   @media only screen and (max-width: 1024px) {
     height: 64px;

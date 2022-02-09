@@ -9,15 +9,16 @@ const Waves = styled(Box)`
   width: 100%;
   z-index: -1;
   display: flex;
-  top: 230px;
+  top: 160px;
   justify-content: center;
 
   @media only screen and (max-width: 1024px) {
     top: 150px;
+    display: none;    
   }
 
   @media only screen and (max-width: 1464px) {
-    top: 150px;
+    top: 280px;
   }
 `;
 
