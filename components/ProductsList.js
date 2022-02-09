@@ -11,7 +11,8 @@ import ProductCard from './ProductCard';
 import ProductsSortBy from './ProductSortBy';
 
 const Wrapper = styled(Grid)`
-  margin-top: 160px;
+  margin-top: 200px;
+  padding-top: 200px;
   max-width: 1494px;
   display: flex;
   flex-direction: column;
@@ -19,10 +20,19 @@ const Wrapper = styled(Grid)`
   width: 100%;
   justify-content: center;
   align-items: start;
+
+  @media only screen and (max-width: 1024px) {
+    margin-top: 0px;
+    padding-top: 120px;
+  }
 `;
 
 const Title = styled(Title2)`
   display: flex;
+
+  @media only screen and (max-width: 1024px) {
+    font-size: ${({ theme }) => theme.fontSizes.lg2};
+  }
  `;
 
 const Span = styled(Title2)`
@@ -30,10 +40,15 @@ const Span = styled(Title2)`
   margin-right: 16px;
   margin-bottom: 42px;
   padding-left: 10px;
+
+  @media only screen and (max-width: 1024px) {
+    font-size: ${({ theme }) => theme.fontSizes.lg2}
+  }
 `;
 
 const FiltersHeader = styled(Box)`
   padding: 10px;
+  padding-top: 0px;
   display: flex;
   align-items: center;
   width: 100%;
@@ -46,6 +61,7 @@ const FiltersHeader = styled(Box)`
   
   @media only screen and (max-width: 1024px) {
     flex-direction: column;
+    align-items: center;
   }
 
 
@@ -79,7 +95,7 @@ export default function ProductsList() {
   const { categories } = useProductsContext();
   
   return (
-    <Wrapper id="productsSection" pt="100px">
+    <Wrapper id="productsSection">
       <Title as="h2">
         <Span>Tech</Span> products
       </Title>

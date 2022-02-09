@@ -97,7 +97,10 @@ function WalkThrough() {
 
   return (
     <ElementsWrapper as="section">
-      <Illustration src="./illustrations/hero-responsive.png"></Illustration>
+      <Illustration
+        src="./illustrations/hero-responsive.png"
+        alt="Illustration"
+      ></Illustration>
       <CardsContainer>
         {cards.map(({ img, title, description, icon, styling }, index) => {
           return (

@@ -38,7 +38,7 @@ function Footer() {
         href="https://github.com/pilichanampe/aerolab-challenge-2022"
         target="_blank"
         >
-        <Image mr="10px"src="./icons/github-active.svg"></Image>
+        <Image mr="10px"src="./icons/github-active.svg" alt="icon"></Image>
         View this repository
       </Link>
       <TwitterLink

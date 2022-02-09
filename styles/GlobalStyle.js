@@ -20,6 +20,7 @@ export const GlobalStyle = createGlobalStyle`
     width: 100%;
     margin-right: auto;
     margin-left: auto;
+    overflow-x: hidden;
   }
 
   #__next {

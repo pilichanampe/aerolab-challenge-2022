@@ -11,8 +11,11 @@ import { postRedeem } from '../components/common/postRedeem';
 import { getUser } from "./common/getUser";
 import { motion } from "framer-motion";
 
-const Container = styled(Box)`
+const Container = styled(motion.div)`
   border-radius: 16px;
+  width: 348px;
+  margin-top: 40px;
+  margin-bottom: 40px;
   margin: 10px;
   cursor: ${({ canNotBuy }) => canNotBuy ? 'not-allowed' : 'pointer'};
   @media only screen and (max-width: 1464px) {
@@ -21,6 +24,7 @@ const Container = styled(Box)`
 `;
 
 const ProductWrapper = styled(Card)`
+  background: ${({ theme }) => theme.colors.n0};
   width: 348px;
   height: 432.92px; 
   justify-content: end;
@@ -60,6 +64,18 @@ const RedeemButton = styled(Button)`
   }
 `;
 
+const spring = {
+  type: "spring",
+  damping: 25,
+  stiffness: 120
+};
+
+const transition = {
+  type: "spring",
+  damping: 25,
+  stiffness: 120
+};
+
 function ProductCard({ img, name, category, cost, id }) {
   const [loading, setLoading] = useState();
   // const [canBuy, setCanBuy] = useState(true);
@@ -89,10 +105,13 @@ function ProductCard({ img, name, category, cost, id }) {
       width={348}
       my={40}
       canNotBuy={points < cost}
+      layout
+      transition={spring}
     >
       <ProductWrapper>
         <ImageWrapper>
           <Image
+            alt="Product image"
             width={280}
             height={204}
             src={img}

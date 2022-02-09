@@ -29,6 +29,7 @@ function Navbar() {
         as="a"
         href="https://aerolab.co/"
         title="Visit Aerolab page"
+        target="_blank"
       >
         <Image
           width="126px"

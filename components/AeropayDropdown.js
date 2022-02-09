@@ -229,6 +229,7 @@ function AeropayDropdown() {
                 <Box>
                 <Image
                   src="./icons/aeropay-3.svg"
+                  alt="icon"
                   pr={2}
                 ></Image>
                 <span>Add Points</span>

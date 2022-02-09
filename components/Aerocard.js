@@ -31,7 +31,7 @@ export default function Aerocard({name}) {
         width="100%"
       >
         <Text fontSize="md2">Aerocard</Text>
-        <Image src="./icons/aeropay-2.svg"></Image>
+        <Image src="./icons/aeropay-2.svg" alt="icon"></Image>
       </Box>
       <Box
         display="flex"

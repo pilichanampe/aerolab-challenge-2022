@@ -15,6 +15,11 @@ const FilterButton = styled(Button)`
   background: ${({ isSelected, theme }) => isSelected && theme.colors.brandDefault};
   -webkit-background-clip: ${({ isSelected }) => !isSelected && 'text'};
   -webkit-text-fill-color: ${({ isSelected }) => !isSelected && 'transparent'};
+
+  @media only screen and (max-width: 1024px) {
+    font-size: ${({ theme }) => theme.fontSizes.sm1};
+    border-radius: 12px;
+  }
 `;
 
 const ButtonWrapper = styled(Box)`
