@@ -19,10 +19,11 @@ const Wrapper = styled(Grid)`
   width: 100%;
   justify-content: center;
   align-items: start;
-
+  
   @media only screen and (max-width: 1024px) {
     margin-top: 0px;
     padding-top: 120px;
+    align-items: center;
   }
 `;
 
@@ -91,7 +92,6 @@ const FilterText = styled(Text)`
 
 export default function ProductsList() {
   const { products } = useProductsContext();
-  const { categories } = useProductsContext();  
   
   return (
     <Wrapper id="productsSection">
