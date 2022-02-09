@@ -83,6 +83,89 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-animation-delay: .16s;
     -webkit-animation-iteration-count: infinite;
   }
+
+
+  // TOAST STYLES //
+
+  /* .toast.container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  z-index: 2;
+} */
+
+.toast. ul,
+.toast li {
+  padding: 0;
+  margin: 0;
+}
+
+.toast ul {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  /* top: 0; */
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  justify-content: flex-end;
+  z-index: 2;
+  padding-inline-start: 0px;
+  padding: 0px 10px;
+  /* height: 70vh; */
+}
+
+.toast li {
+  padding: 24px;
+  width: 532px;
+  min-height: 80px;
+  border: ${({ theme, error }) =>`2px solid ${error ? theme.colors.redDefault : theme.colors.greenDefault}`};
+  background: ${({ theme }) => theme.colors.n0};;
+  margin: 10px;
+  flex: 0 0 100px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  font-size: ${({ theme }) => theme.fontSizes.md2};
+  line-height: 150%;
+
+  @media only screen and (max-width: 600px) {
+    width: 100%;
+  }
+}
+
+.toast button {
+  outline: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.toast button.add {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 28px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.toast button.close {
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  background: white;
+  border: none;
+}
   
   @-webkit-keyframes animateDot {
     20% {
