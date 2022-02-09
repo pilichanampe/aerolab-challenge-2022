@@ -3,8 +3,9 @@ import { Button } from "./basecomponents/Button";
 import { Text } from "./basecomponents/Text";
 import { Box } from "./basecomponents/Box";
 import { useProductsContext } from "../context/ProductsContext";
-import { useEffect, useState } from "react";
-import { useUserContext } from "../context/UserContext";
+import { useState } from "react";
+
+const Container = styled(Box)``;
 
 const FilterButton = styled(Button)`
   width: auto;
@@ -19,6 +20,12 @@ const FilterButton = styled(Button)`
 const ButtonWrapper = styled(Box)`
   background: ${({ theme }) => theme.colors.brandLight};
   border-radius: 12px;
+`;
+
+const SortText = styled(Text)`
+  @media only screen and (max-width: 1464px) {
+    display: none;
+  }
 `;
 
 function ProductsSortBy() {
@@ -47,13 +54,14 @@ function ProductsSortBy() {
   }
 
   return (
-    <Box
+    <Container
       display="flex"
       width="auto"
       height="100"
       alignItems="center"
+      py="34px"
     >
-      <Text mr={3}>Sort by:</Text>
+      <SortText mr={3}>Sort by:</SortText>
       {filters.map(filter => {
         return (
           <ButtonWrapper
@@ -70,7 +78,7 @@ function ProductsSortBy() {
           </ButtonWrapper>
         )
       })}
-    </Box>  
+    </Container>  
   );
 }
 

@@ -4,32 +4,74 @@ import { useProductsContext } from '../context/ProductsContext';
 import { useUserContext } from '../context/UserContext';
 import { Box } from './basecomponents/Box';
 import { Text } from './basecomponents/Text';
+import { Title2 } from './basecomponents/Title';
+import { Grid } from './basecomponents/Grid';
 import CategoryDropdown from './CategoryDropdown';
 import ProductCard from './ProductCard';
 import ProductsSortBy from './ProductSortBy';
 
-const Wrapper = styled(Box)`
+const Wrapper = styled(Grid)`
+  margin-top: 160px;
+  max-width: 1494px;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   width: 100%;
-  justify-content: space-between;
-  align-items: center;
-  
-  /* Small devices (portrait tablets and large phones, 600px and up) */
-  @media only screen and (max-width: 1464px) {
-    justify-content: center;
-  }
+  justify-content: center;
+  align-items: start;
+`;
+
+const Title = styled(Title2)`
+  display: flex;
+ `;
+
+const Span = styled(Title2)`
+  color: #176FEB;
+  margin-right: 16px;
+  margin-bottom: 42px;
+  padding-left: 10px;
 `;
 
 const FiltersHeader = styled(Box)`
+  padding: 10px;
   display: flex;
   align-items: center;
   width: 100%;
+
+  @media only screen and (max-width: 1464px) {
+    flex-direction: column;
+    align-items: start;
+  }
+
+  
+  @media only screen and (max-width: 1024px) {
+    flex-direction: column;
+  }
+
+
 `;
 
 const Divider = styled(Box)`
   border-left: 2px solid ${({ theme }) => theme.colors.n300};
   height: 59px;
+
+  @media only screen and (max-width: 1464px) {
+    display: none;
+  }
+`;
+
+const ProductsWrapper = styled(Box)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: auto;
+`;
+
+const FilterText = styled(Text)`
+  @media only screen and (max-width: 1464px) {
+    display: none;
+  }
 `;
 
 export default function ProductsList() {
@@ -38,13 +80,16 @@ export default function ProductsList() {
   
   return (
     <Wrapper id="productsSection" pt="100px">
+      <Title as="h2">
+        <Span>Tech</Span> products
+      </Title>
       <FiltersHeader>
-        <Text mr={3}>Filter by:</Text>
+        <FilterText mr={3}>Filter by:</FilterText>
         <CategoryDropdown></CategoryDropdown>
         <Divider mx="40px" vertical height="100%"></Divider>
         <ProductsSortBy products={products}></ProductsSortBy>
       </FiltersHeader>
-      <Wrapper>
+      <ProductsWrapper>
         {products.map(({ _id, name, cost, category, img}) => {
           return (
             <ProductCard
@@ -57,7 +102,7 @@ export default function ProductsList() {
             ></ProductCard>            
           )
         })}
-      </Wrapper>
+      </ProductsWrapper>
     </Wrapper>
   );
 };

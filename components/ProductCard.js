@@ -13,6 +13,7 @@ import { motion } from "framer-motion";
 
 const Container = styled(Box)`
   border-radius: 16px;
+  margin: 10px;
   cursor: ${({ canNotBuy }) => canNotBuy ? 'not-allowed' : 'pointer'};
   @media only screen and (max-width: 1464px) {
     margin: 20px 8px;
