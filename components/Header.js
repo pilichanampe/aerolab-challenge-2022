@@ -188,6 +188,7 @@ function Header() {
               <Image
                 src="./icons/Icons.svg"
                 ml="11px"
+                alt="icon"
               ></Image>
             </BigButton>
         </TextWrapper>
@@ -196,7 +197,8 @@ function Header() {
         <IllustrationWrapper>
           <Illustration
             src="./illustrations/hero-desktop.png"
-            ></Illustration>
+            alt="Illustration"
+          ></Illustration>
         </IllustrationWrapper>
       </IllustrationContainer>
     </HeaderWrapper>

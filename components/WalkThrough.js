@@ -60,7 +60,6 @@ const BackgroundContainer = styled(Box)`
   justify-content: end;
   background: ${({ theme }) => theme.colors.sectionBg};
   z-index: -1;
-
   
   @media only screen and (max-width: 1024px) {
     height: 1716px !important;
@@ -70,7 +69,6 @@ const BackgroundContainer = styled(Box)`
     height: 656px;
   }
 `;
-
 
 function WalkThrough() {
   const cards = [
@@ -98,26 +96,27 @@ function WalkThrough() {
   ];
 
   return (
-    // <Container as="section">
-        <ElementsWrapper>
-          <Illustration src="./illustrations/hero-responsive.png"></Illustration>
-          <CardsContainer>
-            {cards.map(({ img, title, description, icon, styling }, index) => {
-              return (
-                <WalkThroughCard
-                  key={`wt-${index}`}
-                  img={img}
-                  title={title}
-                  description={description}
-                  icon={icon}
-                  styling={styling}
-                ></WalkThroughCard>
-              )
-            })}
-          </CardsContainer>
-          <BackgroundContainer></BackgroundContainer>
-        </ElementsWrapper>
-    // {/* </Container> */}
+    <ElementsWrapper as="section">
+      <Illustration
+        src="./illustrations/hero-responsive.png"
+        alt="Illustration"
+      ></Illustration>
+      <CardsContainer>
+        {cards.map(({ img, title, description, icon, styling }, index) => {
+          return (
+            <WalkThroughCard
+              key={`wt-${index}`}
+              img={img}
+              title={title}
+              description={description}
+              icon={icon}
+              styling={styling}
+            ></WalkThroughCard>
+          )
+        })}
+      </CardsContainer>
+      <BackgroundContainer></BackgroundContainer>
+    </ElementsWrapper>
   );
 }
 

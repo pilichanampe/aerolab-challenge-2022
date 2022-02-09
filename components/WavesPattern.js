@@ -18,7 +18,7 @@ const Waves = styled(Box)`
   }
 
   @media only screen and (max-width: 1464px) {
-    top: 280px;
+    top: 130px;
   }
 `;
 

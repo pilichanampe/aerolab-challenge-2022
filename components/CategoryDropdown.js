@@ -4,9 +4,7 @@ import { Box } from './basecomponents/Box';
 import { Card } from './basecomponents/Card';
 import { Text } from './basecomponents/Text';
 import { Image } from './basecomponents/Image';
-
 import { useProductsContext } from '../context/ProductsContext';
-import { getProducts } from './common/getProducts';
 
 const ADropdown = styled(Card)`
   flex-direction: row;
@@ -18,6 +16,11 @@ const ADropdown = styled(Card)`
   padding: 0 16px;
   padding-left: 24px;
   height: 59px;
+
+  @media only screen and (max-width: 1024px) {
+    width: 348px;
+    margin: 10px 0px;
+  }
 `;
 
 const Menu = styled(Card)`
@@ -32,6 +35,11 @@ const Menu = styled(Card)`
  padding-right: 2px;
  position: absolute;
  top: 67px;
+
+ @media only screen and (max-width: 1024px) {
+    width: 348px;
+    margin: 10px 0px;
+  }
 `;
 
 const MenuContent = styled(Box)`
