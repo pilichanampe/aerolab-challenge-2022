@@ -17,6 +17,7 @@ const ADropdown = styled(Card)`
   cursor: pointer;
   background-color: ${({ theme }) => theme.colors.n0};
   padding: 0 16px;
+  box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.08);
 `;
 
 const LoadingDots = styled(ThreeDotsWave)`
@@ -51,15 +52,16 @@ const Menu = styled(Card)`
 `;
 
 const MenuTitle = styled(Card)`
+  color: ${({ theme }) => theme.colors.n900};
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-      border-left: none;
+  border-left: none;
   border-top: none;
   border-right: none;
   height: 58px;
   width: 100%;
   align-items: start;
-  padding-top: 16px;
+  padding-top: 24px;
   padding-bottom: 24px;
   padding-left: 24px;
   padding-right: 24px;
@@ -182,7 +184,7 @@ function AeropayDropdown() {
       <Menu
         isOpen={active}
       >
-        <MenuTitle>Add Balance</MenuTitle>
+        <MenuTitle as="span">Add Balance</MenuTitle>
         <MenuContent>
           <Box>
             <Aerocard name={name}></Aerocard>
