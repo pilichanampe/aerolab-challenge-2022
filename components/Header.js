@@ -177,7 +177,7 @@ function Header() {
           </Title>
           <Text
             mt="24px"
-          >Here you'll be able to redeem all of your hard-earned Aeropoints and exchange them for cool tech.</Text>
+          >Here you&apos;ll be able to redeem all of your hard-earned Aeropoints and exchange them for cool tech.</Text>
             <BigButton
               as={Link}
               to="productsSection"
