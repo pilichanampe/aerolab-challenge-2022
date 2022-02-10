@@ -52,6 +52,7 @@ export const Toast = ({ error }) => {
               exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.2 } }}
             >
               <Icon
+                alt="icon"
                 src={error ? './icons/system-error.svg' : './icons/system-success.svg'}
               ></Icon>
               <Text
@@ -62,6 +63,7 @@ export const Toast = ({ error }) => {
                 onClick={(e) => handleRemoveNotification(e, index)}
               >
                 <Icon
+                  alt="icon"
                   src="./icons/cross-default.svg"
                 ></Icon>
               </CrossButton>
