@@ -151,6 +151,7 @@ function AeropayDropdown() {
     postPoints(pointsSelected)
     .then(response => {
       setPoints(response['New Points']);
+      setActive(false);
       setNotifications(
         [
           ...notifications,
