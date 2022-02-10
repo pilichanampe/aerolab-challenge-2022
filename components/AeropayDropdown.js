@@ -154,7 +154,7 @@ function AeropayDropdown() {
       setNotifications(
         [
           ...notifications,
-          <Text>
+          <Text key={response.message}>
             {response.message}
           </Text>
         ]
@@ -179,6 +179,7 @@ function AeropayDropdown() {
           width={32}
           height={32}
           src='./icons/favicon.svg'
+          alt="icon"
         ></Image>    
         <Points>
           {loading && <LoadingDots></LoadingDots>}

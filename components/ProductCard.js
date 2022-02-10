@@ -93,7 +93,7 @@ function ProductCard({ img, name, category, cost, id }) {
       setNotifications(
         [
           ...notifications,
-          <Text>
+          <Text key={name}>
             <Text
               as="strong"
               color="n900"
@@ -163,6 +163,7 @@ function ProductCard({ img, name, category, cost, id }) {
           <>
            <span>{points > cost ? 'Redeem' : 'You need'}</span>
             <Image
+              alt="icon"
               src={points < cost ? './icons/aeropay-4.svg' : './icons/aeropay-3.svg'}
               px={2}
             ></Image>
