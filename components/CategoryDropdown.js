@@ -138,6 +138,7 @@ function CategoryDropdown() {
     e.preventDefault();
     e.stopPropagation();
     setSelected(e.target.id);
+    setActive(false);
     const selectedTemp = e.target.id;
     if (selectedTemp === 'All Products') {
       setProducts(allProducts);
