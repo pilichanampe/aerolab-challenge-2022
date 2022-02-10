@@ -1,34 +1,43 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
 
-First, run the development server:
+![Aerolab Logo](public/icons/aerolab-logo-1.svg)
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+# Aerolab Challenge 2022
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Proyecto desafío de front end lanzado en 2022 por la compañía de diseño digital Aerolab.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+* [Enlace al desafío](https://github.com/Aerolab/frontend-developer-coding-challenge).
+* [Enlace a la demo](https://aerolab-challenge-pilichanampe.vercel.app/).
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Historia de este proyecto
 
-## Learn More
+Aunque se podía elegir utilizar las tecnologías que nos quedaran más cómodas, decidí salir un poco de mi zona de confort (Vue.js) y me aventuré a armarlo con las tecnologías recomendadas: Next.js, Styled Components y Vercel.
 
-To learn more about Next.js, take a look at the following resources:
+![Next.js Logo](docs/img/next-js.svg)
+![Vercel Logo](docs/img/vercel.svg)
+![Styled Components](docs/img/styled-components-1.svg)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Como me faltaba práctica en ellas, el primer approach fue crear un tablero de Jira para poder organizar cómo iba a ser el paso a paso, desde la configuración del stack tecnológico, hasta la transferencia del [sistema de diseño de Figma](https://www.figma.com/file/3O7BxHFnSSawJeny3lXWkE/Aerolab-Frontend-Developer-Coding-Challenge---Public?node-id=52%3A1106) a componentes de React.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+![Jira Board](docs/img/jira-1.png)
 
-## Deploy on Vercel
+Esto me permitió poder tener un control más prolijo de la creación de ramas en el repo, ya que cada tarea era una rama de Git, utilizando el prefijo que automáticamente arma el tablero.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+![Task branches](docs/img/branches-1.png)
+
+En las primeras tareas me centré en investigar sobre las tecnologías, escudriñar completamente el Figma para determinar cómo iban a ser los componentes en el código, buscando poder reutilizar la mayor cantidad de código posible. Concebirlo al proyecto desde un principio con esa perspectiva, me ayudó a que la implementación de los componentes sea más fluida.
+
+El primer gran desafío fue poder configurar de manera global el manejo del theme. Como en proyectos anteriores venía utilizando Vuetify (Vue.js) y me fascinaba la manera en cómo accedía a las configuraciones de estilos a través de variables accesibles a todo el proyecto, busqué una alternativa similiar y terminé llegando a Styled System, una librería que permite trabajar tranquilamente junto a Styled Components.
+
+Teniendo en cuenta que no había utilizado mucho React, el siguiente desafío fue poder unificar el manejo de la data con los hooks, las peticiones y los métodos de SSR de Next.js.
+
+Finalmente, al deployar el proyecto en Vercel, fue duro ver romperse todos los estilos sin piedad (T.T). Ahí es cuando me di cuenta que faltaba un pequeño gran detalle en la configuración del `_document.js` y la instalación de un plugin de Babel para que Styled Components pudiera renderizar correctamente.
+
+Fue una experiencia muy gratificante, ya que me dio la oportunidad de poder convertir a código un bellísimo sistema de diseño armado por diseñadores profesionales, mientras aprendía a utilizar tecnologías nuevas para mí.
+
+Aquí [se puede ver la demo](https://aerolab-challenge-pilichanampe.vercel.app/). ¡A seguir aprendiendo!
+
+
+![Vista previa](docs/img/landing-preview.jpeg)
